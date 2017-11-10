@@ -17,6 +17,8 @@
 3. 输入：./start [path] [port]
    >其中:path,port可以不写，默认为.和8080
 
+4. 请使用最新的Chrome或FireFox测试
+
 ## Environment
 >Linux version 3.10.0-514.el7.x86_64 (builder@kbuilder.dev.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC) ) #1 SMP Tue Nov 22 16:42:41 UTC 2016
 
