@@ -186,8 +186,7 @@ void Mserver::run() {
         {
             cerr<<"accept error!"<<endl;
             perror("accept");
-            continue
-            ;
+            continue;
         }
         cout<<"run::accept socket:"<<client_fd<<endl;
         int *client=new int(client_fd);
@@ -214,31 +213,22 @@ Mserver::~Mserver() {
 
 //403:禁止访问
 void Mserver::res_403(int client) {
-    const char* msg = "403,forbidden!";
-    string header="HTTP/1.1 403 FORBIDDEN!\r\nServer: Mserverl\r\n\r\n";
+    string header="HTTP/1.1 403 FORBIDDEN!\r\nServer: Mserver\r\n\r\n";
     if( send(client, const_cast<char*>(header.c_str()), header.size(), 0) == -1)
-        cerr<<"send 403 error!"<<endl;
-    if( send(client, const_cast<char*>(msg), strlen(msg), 0) == -1)
         cerr<<"send 403 error!"<<endl;
 }
-
 //404：未找到资源
 void Mserver::res_404(int client) {
-    const char* msg = "404,not find!";
-    string header="HTTP/1.1 404 BAD\r\nServer: Mserverl\r\n\r\n";
+    string header="HTTP/1.1 404 BAD\r\nServer: Mserver\r\n\r\n";
     if( send(client, const_cast<char*>(header.c_str()), header.size(), 0) == -1)
         cerr<<"send 404 error!"<<endl;
-    if( send(client, const_cast<char*>(msg), strlen(msg), 0) == -1)
-        cerr<<"send 404 error!"<<endl;
+    
 }
 
 //500：服务器错误
 void Mserver::res_500(int client) {
-    const char* msg = "500,server error!";
     string header="HTTP/1.1 500 BAD\r\nServer: Mserverl\r\n\r\n";
     if( send(client, const_cast<char*>(header.c_str()), header.size(), 0) == -1)
-        cerr<<"send 505 error!"<<endl;
-    if( send(client, const_cast<char*>(msg), strlen(msg), 0) == -1)
         cerr<<"send 505 error!"<<endl;
 }
 
