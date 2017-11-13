@@ -1,5 +1,5 @@
 # mServer
-要求可以访问指定目录静态文件 文本和图片
+- 要求可以访问指定目录静态文件:文本,图片，音乐等
 
 ## 背景资料
 1. [HTTP请求报文格式及HTTP响应报文格式](http://blog.csdn.net/a19881029/article/details/14002273)
@@ -21,6 +21,8 @@
 
 ## Environment
 >Linux version 3.10.0-514.el7.x86_64 (builder@kbuilder.dev.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC) ) #1 SMP Tue Nov 22 16:42:41 UTC 2016
+
+> OSX EI Captian version 10.11.6
 
 ## Webbench test
  > Test result
