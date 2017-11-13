@@ -107,29 +107,24 @@ void* Mserver::mthread(void *client_p) {
         if((filepath.substr(filepath.length() - 1 , 1) == "/") || S_ISDIR(info.st_mode)) {
             res_403(client);
         }else{
-            cout<<"path visit:"<<filepath<<endl;
             file_type = get_file_type(filepath);
             unsigned int file_size = get_file_size(filepath.c_str());
-            cout<<file_size<<endl;
             file.open(filepath.c_str(),ios::binary|ios::in);
             flag=file.fail();
             memset(buf,'\0',MAXSIZE);
             if(flag) {
-                cout<<flag<<" "<<file.gcount()<<endl;
                 res_404(client);
             } else {
                 header="HTTP/1.1 200 OK\r\nServer: Mserver\r\nContent-length: " + int2string(file_size) + "\r\nContent-type: " + file_type + "\r\n\r\n";
                 
                 if( send(client, const_cast<char*>(header.c_str()), header.size(), 0) == -1) {
                     cerr<<"send3 error!"<<client<<endl;
-                    printf("errno=%d\n",errno);
                 }
 
                 while(!file.eof()){
                     file.read(buf,MAXSIZE);
                     if(send(client,const_cast<char*>(buf),file.gcount(),0)==-1) {
                         cerr<<"send4 error!"<<client<<endl;
-                        printf("errno=%d\n",errno);
                         break;
                     }
                 }
@@ -188,7 +183,6 @@ void Mserver::run() {
             perror("accept");
             continue;
         }
-        cout<<"run::accept socket:"<<client_fd<<endl;
         int *client=new int(client_fd);
 
         if(pthread_create(&newthread,NULL,mthread,client)!=0) {
